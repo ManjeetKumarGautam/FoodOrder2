@@ -34,8 +34,7 @@ cd food-order-app
 ```
 
 2. Install dependencies for both frontend and backend
-bash
-Copy code
+```bash
 # Install backend dependencies
 cd backend
 npm install
@@ -43,7 +42,7 @@ npm install
 # Install frontend dependencies
 cd ../frontend
 npm install
-
+```
 
 3. Set up environment variables
 Create a .env file in the backend directory with the following configuration:
