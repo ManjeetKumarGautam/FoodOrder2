@@ -81,8 +81,7 @@ The backend runs on http://localhost:5000.
 - **DELETE /api/foods/**: Delete a food item (Admin only)
 
 ## Folder Structure
-
-Copy code
+```bash
 ├── backend
 │   ├── config           # Database and other configurations
 │   ├── controllers      # Business logic for food and order routes
@@ -98,6 +97,8 @@ Copy code
 │   │   ├── App.js       # Main application file
 │   │   └── index.js     # React entry point
 └── README.md
+```
+
 ## Dependencies
 **Backend**
 - Express for building the API
