@@ -30,7 +30,7 @@ const Cart = () => {
                                 <>
                                     <div key={index} className="cart-items-title cart-items-item">
                                         <p>
-                                            <img src={url + "/images/" + item.imageName} alt="" />
+                                            <img src={item.image} alt="" />
                                         </p>
 
                                         <p>{item.name}</p>

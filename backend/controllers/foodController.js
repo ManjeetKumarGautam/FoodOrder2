@@ -1,18 +1,22 @@
-
 import food from "../models/food.js";
 import fs from 'fs'
+import { v2 as cloudinary } from "cloudinary"
 
-
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET // Click 'View API Keys' above to copy your API secret
+});
 // add food items
 const addFood = async (req, res) => {
 
-    let image_filename = `${req.file.filename}`;
-
+    const uploadResult = await cloudinary.uploader.upload(req.file.path);
+    fs.unlink(`uploads/${req.file.path}`, () => { })
     const food_data = new food({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
-        imageName: image_filename,
+        image: uploadResult.url,
         category: req.body.category
     })
     try {
@@ -27,7 +31,7 @@ const addFood = async (req, res) => {
 }
 const listFood = async (req, res) => {
     try {
-        const foodList = await food.find({});
+        const foodList = await food.find();
         res.json({ success: true, data: foodList })
     }
     catch (error) {
@@ -51,7 +55,7 @@ const removeFood = async (req, res) => {
 
         const foodItem = await food.findById(req.body.id);
         console.log(foodItem);
-        fs.unlink(`uploads/${foodItem.imageName}`, () => { })
+        fs.unlink(`uploads/${foodItem.image}`, () => { })
 
         await food.findByIdAndDelete(req.body.id);
 

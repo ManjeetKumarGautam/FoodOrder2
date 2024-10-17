@@ -9,7 +9,7 @@ const Add = ({ url }) => {
 
     const [data, setData] = useState({
         name: "",
-        description: "",
+        description: "Food provides essential nutrients for overall health and well-being",
         category: "Salad",
         price: ""
     });
